@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="com.mapper.TestMapper">
+	       <!-- useGeneratedKeys="true"；使用自增主键获取主键值策略;
+	       keyProperty；指定对应的主键属性，也就是mybatis获取到主键值以后，将这个值封装给javaBean的哪个属性。 -->
+		<insert id="testAdd" parameterType="com.pojo.TestItems" useGeneratedKeys="true" keyProperty="test_id">
+	        insert into test_info ( username,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,AA,AB) values (#{username},#{A},#{B},#{C},#{D},#{E},#{F},#{G},#{H},#{I},#{J},#{K},#{L},#{M},#{N},#{O},#{P},#{Q},#{R},#{S},#{T},#{U},#{V},#{W},#{X},#{Y},#{Z},#{AA},#{AB})      
+	    </insert>
+	    
+	    <select id="getTest" parameterType="java.lang.String" resultType="com.pojo.TestItems">
+	        select * from test_info where username = #{0} order by A ASC, date_format(B,'%m')
+	    </select>
+	    <delete id="rowDelete" parameterType="java.lang.String">
+	    	delete from test_info where username = #{loginUser} and A = #{project} and B = #{month}
+	    </delete>
+	    <update id="rowUpdate" parameterType="com.pojo.TestItems" >
+        update test_info set C=#{testItems.C},D=#{testItems.D},E=#{testItems.E},F=#{testItems.F},G=#{testItems.G},H=#{testItems.H},I=#{testItems.I},J=#{testItems.J},K=#{testItems.K},L=#{testItems.L},M=#{testItems.M},N=#{testItems.N},O=#{testItems.O},P=#{testItems.P},Q=#{testItems.Q},R=#{testItems.R},S=#{testItems.S},T=#{testItems.T},U=#{testItems.U},V=#{testItems.V},W=#{testItems.W},X=#{testItems.X},Y=#{testItems.Y},Z=#{testItems.Z},AA=#{testItems.AA},AB=#{testItems.AB}
+         where username=#{testItems.username} and A=#{testItems.A} and B=#{testItems.B}
+    	</update>
+    	
+    	<select id="downLoad" resultType="com.pojo.TestItems">
+	        select * from test_info  order by A ASC, date_format(B,'%m')  
+	    </select>
+	</mapper>
